@@ -3,9 +3,9 @@
 Forked from https://github.com/iihnordic/screamingfrog-docker - thanks for the original
 
 Enhanced features
-* Memory Allocation (ENV Variable)
-* SF Version Declaration (Build Arg)
-* Azure Container Instance Support
+* [Memory Allocation (ENV Variable)](#Memory-allocation)
+* [SF Version Declaration (Build Arg)](#Setting-the-version)
+* [Azure Container Instance Support](#Azure-container-instance-support)
 
 
 # ScreamingFrog Docker (Original)
@@ -153,7 +153,7 @@ By default screamingfrog sets a memory allocation of 2gb, this can be limiting i
 
 By default this image uses version 10.3 of screaming frog, you can override this when building the container by setting SF_Version arg to the required version
 
-## Azure Container Instance Support
+## Azure Container Instance support
 
 To deploy this image as an azure container instance so you can spin up on demand docker images to crawl you can just use the supplied arm template, in order to override the params for your crawl, set the commands param to be something like this ..
 
