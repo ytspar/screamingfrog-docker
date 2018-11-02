@@ -1,0 +1,7 @@
+version: "3"
+services:
+  screamingfrog:
+    build: .
+    command: --headless --save-crawl --output-folder /home/crawls --timestamped-output --bulk-export 'All Outlinks' --crawl https://google.com
+    volumes:
+     - ./crawls:/home/crawls

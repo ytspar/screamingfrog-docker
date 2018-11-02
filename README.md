@@ -2,9 +2,17 @@
 
 Forked from https://github.com/iihnordic/screamingfrog-docker 
 
-* I enchanced it a little to provide the ability to do memory allocation via env variables which i needed for crawling large sites.
-* Also included an example docker compose
+I enhanced it a little with the following ..
+
+* Ability to do screamingfrog memory allocation via env variables which i needed for crawling large sites. To do so pass an env variable of SF_MEMORY then the value (example 8g, 1024mb, etc)
+* Ability to define screaming frog version at build time via build args (SF_Version)
+* Also included an example docker compose, so you can now just run with docker-compose up (mod the command in the file)
 * Included an azure deployent json so you can deploy it to azure container instances via azure resource manager and do on demand / run once crawls, super cheap!
+
+### Azure container instance usage
+If you want to use it in an azure container instance, you can just deploy it with the template included via the portal you just need to fill in the params, it will save crawls to azure storage too. Or you can do neat stuff like deploy it via azure devops on a schedule using the template, this means you can do scheduled on demand crawls .. pretty cool. The important thing is to write the command override for the instance, below is an example value.
+
+```screamingfrogseospider, --headless, --crawl, https://google.come, --config, /home/crawls/mycrawlconfig.seospiderconfig, --save-crawl, --output-folder, /home/crawls, --timestamped-output, --export-tabs, Internal:All, --export-format, csv, --save-report, Crawl Overview, Orphan Pages, --bulk-export, Response Codes:Client Error (4xx) Inlinks```
 
 ===========================
 # ScreamingFrog Docker

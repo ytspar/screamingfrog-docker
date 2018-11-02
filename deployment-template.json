@@ -1,0 +1,142 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "containerName": {
+            "type": "string"
+        },
+        "location": {
+            "type": "string"
+        },
+        "containerURI": {
+            "type": "string"
+        },
+        "imageRegistryLoginServer": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "imageUsername": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "imagePassword": {
+            "type": "securestring",
+            "defaultValue": ""
+        },
+        "osType": {
+            "allowedValues": [
+                "Linux",
+                "Windows"
+            ],
+            "type": "string"
+        },
+        "numberCores": {
+            "type": "string"
+        },
+        "memory": {
+            "type": "string"
+        },
+        "screamingFrogMemory": {
+            "defaultValue" : "2g",
+            "type": "string"
+        },
+        "dnsLabel": {
+            "defaultValue": "",
+            "type": "string"
+        },
+        "commands": {
+            "defaultValue": "none",
+            "type": "string"
+        },
+        "restartPolicy": {
+            "type": "string"
+        },
+        "sharename": {
+            "type": "string"
+        },
+        "storageaccountname": {
+            "type": "string"
+        },
+        "storageaccountkey": {
+            "type": "securestring"
+        },
+        "mountpoint": {
+            "type": "string"
+        }
+    },
+    "variables": {
+        "APIversion": "2018-04-01",
+        "containerName": "[parameters('containerName')]",
+        "location": "[parameters('location')]",
+        "containerURI": "[parameters('containerURI')]",
+        "imageRegistryLoginServer": "[parameters('imageRegistryLoginServer')]",
+        "imageUsername": "[parameters('imageUsername')]",
+        "imagePassword": "[parameters('imagePassword')]",
+        "osType": "[parameters('osType')]",
+        "numberCores": "[int(parameters('numberCores'))]",
+        "memory": "[float(parameters('memory'))]",
+        "commands": "[if(equals(parameters('commands'), 'none'), take(createArray(''), 0), split(parameters('commands'), ', '))]",
+        "restartPolicy": "[parameters('restartPolicy')]"
+    },
+    "resources": [
+        {
+            "name": "[variables('containerName')]",
+            "type": "Microsoft.ContainerInstance/containerGroups",
+            "apiVersion": "[variables('APIversion')]",
+            "location": "[variables('location')]",
+            "properties": {
+                "containers": [
+                    {
+                        "name": "[variables('containerName')]",
+                        "properties": {
+                            "image": "[variables('containerURI')]",
+                            "command": "[variables('commands')]",
+                            "resources": {
+                                "requests": {
+                                    "cpu": "[variables('numberCores')]",
+                                    "memoryInGB": "[variables('memory')]"
+                                }
+                            },
+                            "environmentVariables": [
+                                {
+                                    "name": "JVM_OPTS",
+                                    "value": "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1 -Xms64M"
+                                },
+                                {
+                                    "name": "SF_MEMORY",
+                                    "value": "[parameters('screamingFrogMemory')]"
+                                }
+                            ],
+                            "volumeMounts": [
+                                {
+                                    "name": "crawldata",
+                                    "mountPath": "[parameters('mountpoint')]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "restartPolicy": "[variables('restartPolicy')]",
+                "osType": "[variables('osType')]",
+                "imageRegistryCredentials": [
+                    {
+                        "server": "[parameters('imageRegistryLoginServer')]",
+                        "username": "[parameters('imageUsername')]",
+                        "password": "[parameters('imagePassword')]"
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "crawldata",
+                        "azureFile": {
+                            "shareName": "[parameters('sharename')]",
+                            "storageAccountName": "[parameters('storageaccountname')]",
+                            "storageAccountKey": "[parameters('storageaccountkey')]"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "outputs": {}
+}
