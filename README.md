@@ -12,7 +12,9 @@ I enhanced it a little with the following ..
 ### Azure container instance usage
 If you want to use it in an azure container instance, you can just deploy it with the template included via the portal you just need to fill in the params, it will save crawls to azure storage too. Or you can do neat stuff like deploy it via azure devops on a schedule using the template, this means you can do scheduled on demand crawls .. pretty cool. The important thing is to write the command override for the instance, below is an example value.
 
-```sh, /docker-entrypoint.sh --headless, --crawl, https://google.come, --config, /home/crawls/mycrawlconfig.seospiderconfig, --save-crawl, --output-folder, /home/crawls, --timestamped-output, --export-tabs, Internal:All, --export-format, csv, --save-report, Crawl Overview, Orphan Pages, --bulk-export, Response Codes:Client Error (4xx) Inlinks```
+```
+sh, /docker-entrypoint.sh --headless, --crawl, https://google.come, --config, /home/crawls/mycrawlconfig.seospiderconfig, --save-crawl, --output-folder, /home/crawls, --timestamped-output, --export-tabs, Internal:All, --export-format, csv, --save-report, Crawl Overview, Orphan Pages, --bulk-export, Response Codes:Client Error (4xx) Inlinks
+```
 
 ===========================
 # ScreamingFrog Docker
