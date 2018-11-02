@@ -1,10 +1,19 @@
-# ScreamingFrog Docker
+# ScreamingFrog Docker (Enhanced)
 
+Forked from https://github.com/iihnordic/screamingfrog-docker 
+
+* I enchanced it a little to provide the ability to do memory allocation via env variables which i needed for crawling large sites.
+* Also included an example docker compose
+* Included an azure deployent json so you can deploy it to azure container instances via azure resource manager and do on demand / run once crawls, super cheap!
+
+===========================
+# ScreamingFrog Docker
 Provides headless screaming frogs.
 
 Helped by [`databulle`](https://www.databulle.com/blog/seo/screaming-frog-headless.html) - thank you!
 
 Contains a Docker installation Ubuntu ScreamingFrog v10 intended to be used for its [Command Line Interface](https://www.screamingfrog.co.uk/seo-spider/user-guide/general/#command-line).
+
 
 ## Installation
 
