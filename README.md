@@ -1,23 +1,14 @@
 # ScreamingFrog Docker (Enhanced)
 
-Forked from https://github.com/iihnordic/screamingfrog-docker 
+Forked from https://github.com/iihnordic/screamingfrog-docker - thanks for the original
 
-I enhanced it a little with the following ..
+Enhanced features
+* Memory Allocation (ENV Variable)
+* SF Version Declaration (Build Arg)
+* Azure Container Instance Support
 
-* Ability to do screamingfrog memory allocation via env variables which i needed for crawling large sites. To do so pass an env variable of SF_MEMORY then the value (example 8g, 1024mb, etc)
-* Ability to define screaming frog version at build time via build args (SF_Version)
-* Also included an example docker compose, so you can now just run with docker-compose up (mod the command in the file)
-* Included an azure deployent json so you can deploy it to azure container instances via azure resource manager and do on demand / run once crawls, super cheap!
 
-### Azure container instance usage
-If you want to use it in an azure container instance, you can just deploy it with the template included via the portal you just need to fill in the params, it will save crawls to azure storage too. Or you can do neat stuff like deploy it via azure devops on a schedule using the template, this means you can do scheduled on demand crawls .. pretty cool. The important thing is to write the command override for the instance, below is an example value.
-
-```
-sh, /docker-entrypoint.sh --headless, --crawl, https://google.come, --config, /home/crawls/mycrawlconfig.seospiderconfig, --save-crawl, --output-folder, /home/crawls, --timestamped-output, --export-tabs, Internal:All, --export-format, csv, --save-report, Crawl Overview, Orphan Pages, --bulk-export, Response Codes:Client Error (4xx) Inlinks
-```
-
-===========================
-# ScreamingFrog Docker
+# ScreamingFrog Docker (Original)
 Provides headless screaming frogs.
 
 Helped by [`databulle`](https://www.databulle.com/blog/seo/screaming-frog-headless.html) - thank you!
@@ -154,3 +145,21 @@ The example below starts a headless crawl of `http://iihnordic.com` and saves th
 2018-09-20 13:52:14,872 [8] [exitlogger] INFO  - Application Exited
 ```
 
+## Memory allocation
+
+By default screamingfrog sets a memory allocation of 2gb, this can be limiting if using in memory crawling for large sites (over 100k)+. To increase the memory allocation run with an envirnmoent variable of SF_MEMORY set to a value (12g, 1024M, etc) - recommended is 2g less then the memory in the container.
+
+## Setting the version
+
+By default this image uses version 10.3 of screaming frog, you can override this when building the container by setting SF_Version arg to the required version
+
+## Azure Container Instance Support
+
+To deploy this image as an azure container instance so you can spin up on demand docker images to crawl you can just use the supplied arm template, in order to override the params for your crawl, set the commands param to be something like this ..
+
+```
+sh, /docker-entrypoint.sh --headless, --crawl, https://google.come, --config, /home/crawls/mycrawlconfig.seospiderconfig, --save-crawl, --output-folder, /home/crawls, --timestamped-output, --export-tabs, Internal:All, --export-format, csv, --save-report, Crawl Overview, Orphan Pages, --bulk-export, Response Codes:Client Error (4xx) Inlinks
+```
+
+By default the template asks for some azure storage credentials, this is where the crawl results should be saved ...
+Ps. If you use azure devops you can do neat stuff like schedule arm deployments using the template to do scheduled on demand crawling! and only pay for the time used to crawl.
