@@ -10,7 +10,10 @@ RUN apt-get update && apt-get install -y \
     zenity \
     ttf-mscorefonts-installer \
     fonts-wqy-zenhei \
-    libgconf-2-4
+    libgconf-2-4 \
+    libnss3 \
+    libxss1 \
+    libasound2
 
 RUN wget --no-verbose https://download.screamingfrog.co.uk/products/seo-spider/screamingfrogseospider_${SF_VERSION}_all.deb && \
     dpkg -i /screamingfrogseospider_${SF_VERSION}_all.deb && \
