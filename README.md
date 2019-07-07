@@ -136,7 +136,7 @@ The example below starts a headless crawl of `http://iihnordic.com` and saves th
 2018-09-20 12:51:11,839 [8] [main] INFO  - Fatal Log File: /root/.ScreamingFrogSEOSpider/crash.txt
 2018-09-20 12:51:11,840 [8] [main] INFO  - Logging Status: OK
 2018-09-20 12:51:11,840 [8] [main] INFO  - Memory: Physical=2.0GB, Used=12MB, Free=19MB, Total=32MB, Max=2048MB, Using 0%
-2018-09-20 12:51:11,841 [8] [main] INFO  - Licence File: /root/.ScreamingFrogSEOSpider/licence.txt
+2018-09-20 12:51:11,841 [8] [main] INFO  - Licence File: /root/.ScreamingFrogSEOSpider/license.txt
 2018-09-20 12:51:11,841 [8] [main] INFO  - Licence Status: invalid
 ....
 ....
