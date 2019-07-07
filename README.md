@@ -1,3 +1,9 @@
+# Forked from ScreamingFrog Docker (Enchanced)
+
+Found here: https://github.com/carlwoodhouse/screamingfrog-docker
+
+Giving it a version bump to 11.3 and 4gb RAM by default.
+
 # ScreamingFrog Docker (Enhanced)
 
 Forked from https://github.com/iihnordic/screamingfrog-docker - thanks for the original
@@ -25,8 +31,8 @@ Contains a Docker installation Ubuntu ScreamingFrog v10 intended to be used for 
 
 `docker build -t screamingfrog .`
 
-Or submit to Google Build Triggers, which will host it for you privately at a URL like 
-`gcr.io/your-project/screamingfrog-docker:a2ffbd174483aaa27473ef6e0eee404f19058b1a` - for use in Kubernetes and such like. 
+Or submit to Google Build Triggers, which will host it for you privately at a URL like
+`gcr.io/your-project/screamingfrog-docker:a2ffbd174483aaa27473ef6e0eee404f19058b1a` - for use in Kubernetes and such like.
 
 ## Usage
 
@@ -161,5 +167,5 @@ To deploy this image as an azure container instance so you can spin up on demand
 sh, /docker-entrypoint.sh --headless, --crawl, https://google.come, --config, /home/crawls/mycrawlconfig.seospiderconfig, --save-crawl, --output-folder, /home/crawls, --timestamped-output, --export-tabs, Internal:All, --export-format, csv, --save-report, Crawl Overview, Orphan Pages, --bulk-export, Response Codes:Client Error (4xx) Inlinks
 ```
 
-By default the template asks for some azure storage credentials, this is where the crawl results should be saved ...
-Ps. If you use azure devops you can do neat stuff like schedule arm deployments using the template to do scheduled on demand crawling! and only pay for the time used to crawl.
+By default the template asks for some Azure storage credentials, this is where the crawl results should be saved ...
+Ps. If you use Azure devops you can do neat stuff like schedule arm deployments using the template to do scheduled on demand crawling! And only pay for the time used to crawl.

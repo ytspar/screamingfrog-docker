@@ -2,6 +2,6 @@ version: "3"
 services:
   screamingfrog:
     build: .
-    command: --headless --save-crawl --output-folder /home/crawls --timestamped-output --bulk-export 'All Outlinks' --crawl http://example.com
+    command: --headless --save-crawl --output-folder /home/crawls --timestamped-output --bulk-export 'All Outlinks' --crawl http://news.ycombinator.com
     volumes:
      - ./crawls:/home/crawls

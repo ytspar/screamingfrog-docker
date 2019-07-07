@@ -1,8 +1,8 @@
 # modified ubuntu https://github.com/phusion/baseimage-docker
 FROM phusion/baseimage
 
-ENV SF_MEMORY "2g"
-ARG SF_VERSION="10.3"
+ENV SF_MEMORY "4g"
+ARG SF_VERSION="11.3"
 
 RUN apt-get update && apt-get install -y \
     wget \
