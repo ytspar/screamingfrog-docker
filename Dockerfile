@@ -20,7 +20,7 @@ RUN wget --no-verbose https://download.screamingfrog.co.uk/products/seo-spider/s
     apt-get install -f -y
 
 COPY spider.config /root/.ScreamingFrogSEOSpider/spider.config
-COPY licence.txt /root/.ScreamingFrogSEOSpider/licence.txt
+COPY licence.txt /root/.ScreamingFrogSEOSpider/license.txt
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 

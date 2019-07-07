@@ -1,8 +1,2 @@
-.Rproj.user
-.Rproj
-.Rhistory
-.RData
-*.Rproj
-license\.txt
-licence\.txt
+license.txt
 crawls\*
