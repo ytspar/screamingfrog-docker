@@ -5,3 +5,4 @@ services:
     command: --headless --save-crawl --output-folder /home/crawls --timestamped-output --bulk-export 'All Outlinks' --crawl http://news.ycombinator.com
     volumes:
      - ./crawls:/home/crawls
+     - ./.ScreamingFrogSEOSpider:/root/.ScreamingFrogSEOSpider
