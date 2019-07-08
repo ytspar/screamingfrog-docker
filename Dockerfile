@@ -23,6 +23,7 @@ COPY spider.config /root/.ScreamingFrogSEOSpider/spider.config
 COPY license.txt /root/.ScreamingFrogSEOSpider/license.txt
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["--help"]
