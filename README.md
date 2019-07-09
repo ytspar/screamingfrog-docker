@@ -4,6 +4,22 @@ Found here: https://github.com/carlwoodhouse/screamingfrog-docker
 
 Giving it a version bump to 11.3 and 4gb RAM by default.
 
+## Very important
+
+The license file is licence.txt (in UK English, licence is the noun and license the verb form... go figure).
+
+There should be no newline at the end.
+
+If you're stuck on "license invalid" errors, `scp` the file from a GUI version of Screaming Frog on your local machine (on my Mac, the config files are located at `~/.ScreamingFrogSEOSpider`).
+
+**So**
+
+From your local Screaming Frog directory,
+
+`scp licence.txt user@remoteboxip:~/reotescreamingfrogdir/licence.txt`
+
+You may also want to compare the sha1 checksums of both with `openssl sha1 licence.txt`
+
 # ScreamingFrog Docker (Enhanced)
 
 Forked from https://github.com/iihnordic/screamingfrog-docker - thanks for the original
@@ -25,7 +41,7 @@ Contains a Docker installation Ubuntu ScreamingFrog v10 intended to be used for 
 ## Installation
 
 1. Clone repo
-2. Add a license.txt file with your username on the first line, and key on the second.
+2. Add a licence.txt file with your username on the first line, and key on the second.
 
 3. Run:
 
@@ -123,32 +139,7 @@ Crawl a website via the example below.  You need to add a local volume if you wa
 The example below starts a headless crawl of `http://iihnordic.com` and saves the crawl and a bulk export of "All Outlinks" to a local folder, that is linked to the `/home/crawls` folder within the container.
 
 ```
-> docker run -v /Users/mark/screamingfrog-docker/crawls:/home/crawls screamingfrog --crawl http://iihnordic.com --headless --save-crawl --output-folder /home/crawls --timestamped-output --bulk-export 'All Outlinks'
-
-2018-09-20 12:51:11,640 [main] INFO  - Persistent config file does not exist, /root/.ScreamingFrogSEOSpider/spider.config
-2018-09-20 12:51:11,827 [8] [main] INFO  - Application Started
-2018-09-20 12:51:11,836 [8] [main] INFO  - Running: Screaming Frog SEO Spider 10.0
-2018-09-20 12:51:11,837 [8] [main] INFO  - Build: 5784af3aa002681ab5f8e98aee1f43c1be2944af
-2018-09-20 12:51:11,838 [8] [main] INFO  - Platform Info: Name 'Linux' Version '4.9.93-linuxkit-aufs' Arch 'amd64'
-2018-09-20 12:51:11,838 [8] [main] INFO  - Java Info: Vendor 'Oracle Corporation' URL 'http://java.oracle.com/' Version '1.8.0_161' Home '/usr/share/screamingfrogseospider/jre'
-2018-09-20 12:51:11,838 [8] [main] INFO  - VM args: -Xmx2g, -XX:+UseG1GC, -XX:+UseStringDeduplication, -enableassertions, -XX:ErrorFile=/root/.ScreamingFrogSEOSpider/hs_err_pid%p.log, -Djava.ext.dirs=/usr/share/screamingfrogseospider/jre/lib/ext
-2018-09-20 12:51:11,839 [8] [main] INFO  - Log File: /root/.ScreamingFrogSEOSpider/trace.txt
-2018-09-20 12:51:11,839 [8] [main] INFO  - Fatal Log File: /root/.ScreamingFrogSEOSpider/crash.txt
-2018-09-20 12:51:11,840 [8] [main] INFO  - Logging Status: OK
-2018-09-20 12:51:11,840 [8] [main] INFO  - Memory: Physical=2.0GB, Used=12MB, Free=19MB, Total=32MB, Max=2048MB, Using 0%
-2018-09-20 12:51:11,841 [8] [main] INFO  - Licence File: /root/.ScreamingFrogSEOSpider/license.txt
-2018-09-20 12:51:11,841 [8] [main] INFO  - Licence Status: invalid
-....
-....
-....
-2018-09-20 13:52:14,682 [8] [SaveFileWriter 1] INFO  - SpiderTaskUpdate [mCompleted=0, mTotal=0]
-2018-09-20 13:52:14,688 [8] [SaveFileWriter 1] INFO  - Crawl saved in: 0 hrs 0 mins 0 secs (154)
-2018-09-20 13:52:14,690 [8] [SpiderMain 1] INFO  - Spider changing state from: SpiderWritingToDiskState to: SpiderCrawlIdleState
-2018-09-20 13:52:14,695 [8] [main] INFO  - Exporting All Outlinks
-2018-09-20 13:52:14,695 [8] [main] INFO  - Saving All Outlinks
-2018-09-20 13:52:14,700 [8] [ReportManager 1] INFO  - Writing report All Outlinks to /home/crawls/2018.09.20.13.51.43/all_outlinks.csv
-2018-09-20 13:52:14,871 [8] [ReportManager 1] INFO  - Completed writing All Outlinks in 0 hrs 0 mins 0 secs (172)
-2018-09-20 13:52:14,872 [8] [exitlogger] INFO  - Application Exited
+> docker run -v /foo/bar/screamingfrog-docker/crawls:/home/crawls screamingfrog --crawl http://iihnordic.com --headless --save-crawl --output-folder /home/crawls --timestamped-output --bulk-export 'All Outlinks'
 ```
 
 ## Memory allocation
