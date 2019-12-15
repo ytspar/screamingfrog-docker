@@ -2,7 +2,7 @@
 
 Found here: https://github.com/carlwoodhouse/screamingfrog-docker
 
-Giving it a version bump to 11.3 and 4gb RAM by default.
+Giving it a version bump to 12.3 and 4gb RAM by default.
 
 ## Very important
 
@@ -16,7 +16,7 @@ If you're stuck on "license invalid" errors, `scp` the file from a GUI version o
 
 From your local Screaming Frog directory,
 
-`scp licence.txt user@remoteboxip:~/reotescreamingfrogdir/licence.txt`
+`scp licence.txt user@remote_box_ip:~/remote_screaming_frog_dir/licence.txt`
 
 You may also want to compare the sha1 checksums of both with `openssl sha1 licence.txt`
 

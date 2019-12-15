@@ -2,7 +2,7 @@
 FROM phusion/baseimage
 
 ENV SF_MEMORY "4g"
-ARG SF_VERSION="11.3"
+ARG SF_VERSION="12.3"
 
 RUN apt-get update && apt-get install -y \
     wget \
